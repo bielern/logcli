@@ -276,7 +276,7 @@ search(Conf * conf){
     body_size = STRINGSIZE;
 
     DEBUG("I am in search\n");
-    if(conf->files.logfile == NULL){
+    if((conf->files.logfile == NULL) && ((conf->command != log) || (conf->command != oneliner))){
         error(1, 0, "No log file found!");
     }
 
