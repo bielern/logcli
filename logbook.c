@@ -103,7 +103,7 @@ init_conf(Conf * conf){
 
     conf->files.confdir = opendir(conf->files.confdirname);
     if(conf->files.confdir == NULL){
-        if((conf->command != log) || (conf->command != oneliner)){
+        if((conf->command != log) && (conf->command != oneliner)){
             error(1, 0, "There are no log entries yet!\n");
         }
         mode_t proc_mask = umask(0);
