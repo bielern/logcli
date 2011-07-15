@@ -1,24 +1,53 @@
+# See http://wiki.archlinux.org/index.php/VCS_PKGBUILD_Guidelines
+# for more information on packaging from GIT sources.
+
 # Maintainer: Noah Bieler <noah.bieler[at]gmx[dot]ch>
 pkgname=logbook
-pkgver=0.1
+pkgver=20110715
 pkgrel=1
 pkgdesc="Logs the date, the current directory and a note."
-url="http://www.foo.tld"
+url="http://www.github.com/bielern/logbook"
 arch=('x86_64' 'i686')
 license=('GPLv3')
+groups=()
 depends=()
-optdepends=()
-makedepends=()
+makedepends=('git')
+provides=()
 conflicts=()
 replaces=()
 backup=()
-source=("http://www.server.tld/${pkgname}-${pkgver}.tar.gz"
-"foo.desktop")
+options=()
+install=
+#source=("http://www.github.com/bielern/logbook")
+source=()
+noextract=()
+
+_gitroot="git://github.com/bielern/logbook.git"
+_gitname="logbook"
 
 build() {
-    make
-    install -d -m755 l "${pkgdir}/usr/bin/"
-    install -m755 l "${pkgdir}/usr/bin/l"
+  cd "$srcdir"
+  msg "Connecting to GIT server...."
+
+  if [ -d $_gitname ] ; then
+    cd $_gitname && git pull origin
+    msg "The local files are updated."
+  else
+    git clone $_gitroot $_gitname
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
+
+  make
 }
 
-# vim:set ts=2 sw=2 et:
+package() {
+  cd "$srcdir/$_gitname-build"
+  install -d -m755 "${pkgdir}/usr/bin/"
+  install -m755 l "${pkgdir}/usr/bin/l"
+} 
