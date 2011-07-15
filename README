@@ -1,0 +1,8 @@
+logbook is a tool to make little notes on the cli.
+For every note, it also safes the current working directory and the date.
+You can search you log book with REGEX'.
+Type 'l help' for help.
+
+INSTALL
+$ make
+install -m755 l "/usr/bin/l"
