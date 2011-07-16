@@ -2,11 +2,11 @@
 # for more information on packaging from GIT sources.
 
 # Maintainer: Noah Bieler <noah.bieler[at]gmx[dot]ch>
-pkgname=logbook
-pkgver=20110715
+pkgname=logcli
+pkgver=20110716
 pkgrel=1
 pkgdesc="Logs the date, the current directory and a note."
-url="http://www.github.com/bielern/logbook"
+url="http://www.github.com/bielern/logcli"
 arch=('x86_64' 'i686')
 license=('GPLv3')
 groups=()
@@ -18,12 +18,11 @@ replaces=()
 backup=()
 options=()
 install=
-#source=("http://www.github.com/bielern/logbook")
 source=()
 noextract=()
 
-_gitroot="git://github.com/bielern/logbook.git"
-_gitname="logbook"
+_gitroot="git://github.com/bielern/logcli.git"
+_gitname="logcli"
 
 build() {
   cd "$srcdir"

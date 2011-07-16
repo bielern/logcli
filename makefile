@@ -1,6 +1,6 @@
 CC=cc
 CFLAGS=-Wall -o l
-SOURCES=logbook.c utils.c
+SOURCES=logcli.c utils.c
 DBFLAGS=-g -DDB=YES
 
 all:
