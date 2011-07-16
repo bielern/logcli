@@ -27,9 +27,9 @@ char usage[] = "l [log|help|dir REGEX|date REGEX|body REGEX] \n\n"
 "No command logs all arguments written.\n\n"
 "Written by Noah Bieler\n";
 
-#define CONFFOLDER "logbook"
-#define CONFFILE "logbook.conf"
-#define LOGFILE "logbook.log"
+#define CONFFOLDER "logcli"
+#define CONFFILE "logcli.conf"
+#define LOGFILE "logcli.log"
 #define STRINGSIZE 1024
 #define Bool int
 #define true 1
