@@ -2,7 +2,7 @@
 # for more information on packaging from GIT sources.
 
 # Maintainer: Noah Bieler <noah.bieler[at]gmx[dot]ch>
-pkgname=logcli
+pkgname=logcli-git
 pkgver=20110716
 pkgrel=1
 pkgdesc="Logs the date, the current directory and a note."
@@ -39,7 +39,7 @@ build() {
   msg "Starting make..."
 
   rm -rf "$srcdir/$_gitname-build"
-  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build" --depth=1
   cd "$srcdir/$_gitname-build"
 
   make
