@@ -26,10 +26,4 @@ xrealloc(void * pointer, size_t size);
  */
 void
 cat(char **to, char * from);
-
-/**
- * safe version strcpy
- */
-void
-cpy(char **to, char * from);
 #endif

@@ -41,16 +41,4 @@ cat(char **to, char * from){
         error(1, 0, "Could not concate the string %s\n", from);
     }
 }
-
-/**
- * safe version strcpy
- */
-void
-cpy(char **to, char * from){
-    int length = strlen(from) + 1;
-    *to = (char *) xrealloc(*to, length * sizeof(char));
-    if(strcpy(*to, from) != *to){
-        error(1, errno, "Could not cpy the string %s\n", from);
-    }
-}
 /* EOF */
