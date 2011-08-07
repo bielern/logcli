@@ -91,12 +91,18 @@ int
 init_conf(Conf * conf){
     Bool firsttime = false;
     char * home = getenv("XDG_CONFIG_HOME");
+    home = NULL;
     if(home == NULL){
         home = getenv("HOME");
-        cat(&home, "/.config");
+        if(home == NULL){
+            error(1, 0, "Could not obtain HOME variable!\n");
+        }
+        conf->files.confdirname = strdup(home);
+        cat(&conf->files.confdirname, "/.config");
+    } else {
+        conf->files.confdirname = strdup(home);
     }
     DEBUG("Home: %s\n", home);
-    conf->files.confdirname = strdup(home);
     cat(&(conf->files.confdirname), "/");
     cat(&conf->files.confdirname, CONFFOLDER);
     DEBUG("confdirname: %s\n", conf->files.confdirname);
@@ -277,7 +283,7 @@ search(Conf * conf){
 
     DEBUG("I am in search\n");
     if((conf->files.logfile == NULL) && ((conf->command != log) || (conf->command != oneliner))){
-        error(1, 0, "No log file found!");
+        error(1, 0, "No log file found!\n");
     }
 
     errcode = regcomp(&(conf->regex.comp_regex), conf->regex.myregex, 
@@ -293,7 +299,7 @@ search(Conf * conf){
                                 buffer, buffer_size);
         }
         regfree(&(conf->regex.comp_regex));
-        error(1, 0, buffer);
+        error(1, 0, "%s\n", buffer);
     }
 
     strcpy(buffer, "\n");
