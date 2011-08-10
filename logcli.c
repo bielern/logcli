@@ -383,8 +383,10 @@ main(int argc, char *argv[]){
         conf.command = log;
     }
     else{
+        int num_arg = argc;
         if(strcmp(argv[1],"log") == 0){
             conf.command = log;
+            num_arg++;
         }
         else if((strcmp(argv[1],"date") == 0) || (strcmp(argv[1],"t") == 0)){
             conf.command = date;
@@ -397,9 +399,15 @@ main(int argc, char *argv[]){
         }
         else if(strcmp(argv[1],"help") == 0){
             conf.command = help;
+            num_arg++;
         }
         else {
             conf.command = oneliner;
+            num_arg++;
+        }
+
+        if(num_arg == 2){
+            error(1, 0, "No regular expression given!");
         }
     }
     if(conf.command == help){
